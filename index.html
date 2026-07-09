@@ -7,7 +7,7 @@
 
 <!-- SEO & Dark Social Meta Tags (WhatsApp) -->
 <meta name="description" content="Itinerario interactivo de nuestra aventura familiar en Costa Rica. Pura Vida.">
-<meta name="theme-color" content="#0d0d0d">
+<meta name="theme-color" content="#000000">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Costa Rica 🌴 | La Pandilla Punkie">
 <meta property="og:description" content="Descubre nuestra ruta, hoteles y apúntate a los bloques del viaje. ¡Pura Vida!">
@@ -15,12 +15,12 @@
 <meta property="og:image" content="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80">
 <meta name="twitter:card" content="summary_large_image">
 
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-dark: #0d0d0d;
-    --card-bg: #1a1a1a;
-    --text-main: #f0f0f0;
+    --bg-dark: #000000; /* Negro puro para contraste máximo OLED */
+    --card-bg: #111111;
+    --text-main: #ffffff; /* Blanco puro */
   }
   
   html { scroll-behavior: smooth; }
@@ -41,21 +41,23 @@
     padding-bottom: 90px; 
   }
 
+  /* A11y: Títulos hipertrofiados */
   header { padding: 30px 20px 10px; text-align: center; }
-  h1 { margin: 0; font-size: 38px; font-weight: 700; text-transform: uppercase; letter-spacing: -1px; color: #fff;}
-  h2 { font-family: 'Caveat', cursive; margin: -5px 0 20px 0; font-size: 28px; color: #00ffcc; transform: rotate(-3deg);}
+  h1 { margin: 0; font-size: 44px; font-weight: 700; text-transform: uppercase; letter-spacing: -1px; color: #fff;}
+  h2 { font-family: 'Caveat', cursive; margin: -5px 0 20px 0; font-size: 32px; color: #00ffcc; transform: rotate(-3deg);}
 
+  /* A11y: Botón principal más grande (Tap Target) */
   .master-map-btn {
     display: flex; align-items: center; justify-content: center; gap: 8px;
     background: linear-gradient(90deg, #111, #222);
-    border: 1px solid #444; color: #fff;
-    padding: 12px 20px; margin: 0 15px 25px 15px;
-    border-radius: 12px; font-weight: 700; font-size: 14px; text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer; transition: all 0.2s;
+    border: 2px solid #555; color: #fff;
+    padding: 15px 20px; margin: 0 15px 25px 15px;
+    border-radius: 12px; font-weight: 700; font-size: 16px; text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8); cursor: pointer; transition: all 0.2s;
   }
   .master-map-btn:active { transform: scale(0.95); background: #333;}
 
-  /* --- MODAL MAPA LOCAL (100% BLINDADO) --- */
+  /* --- MODAL MAPA LOCAL --- */
   .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.95); z-index: 3000;
@@ -66,26 +68,25 @@
   
   .map-wrapper {
     position: relative; width: 350px; height: 500px;
-    /* Carga el archivo local que acabas de guardar en la carpeta */
     background: url('./mapa.jpg') center/cover;
     border-radius: 16px; border: 3px solid #444; overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.8);
   }
   .map-marker {
     position: absolute; transform: translate(-50%, -50%);
-    font-size: 24px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+    font-size: 26px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
     animation: bounce 2s infinite ease-in-out;
   }
   .map-marker::after {
-    content: attr(data-label); position: absolute; top: 25px; left: 50%; transform: translateX(-50%);
-    background: #000; color: #fff; font-size: 10px; padding: 2px 6px;
-    border-radius: 4px; font-weight: bold; white-space: nowrap; border: 1px solid #333;
+    content: attr(data-label); position: absolute; top: 28px; left: 50%; transform: translateX(-50%);
+    background: #000; color: #fff; font-size: 12px; padding: 4px 8px;
+    border-radius: 4px; font-weight: bold; white-space: nowrap; border: 1px solid #555;
   }
   @keyframes bounce { 0%, 100% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, -60%); } }
   
   .close-map-btn {
-    margin-top: 20px; padding: 10px 20px; background: #fff; color: #000;
-    font-weight: bold; border-radius: 8px; border: none; cursor: pointer; text-transform: uppercase;
+    margin-top: 20px; padding: 12px 24px; background: #fff; color: #000;
+    font-weight: bold; font-size: 16px; border-radius: 8px; border: none; cursor: pointer; text-transform: uppercase;
   }
 
   /* --- TARJETAS --- */
@@ -102,43 +103,47 @@
     border-bottom: 3px solid var(--theme-color, #333); background-color: #222;
   }
 
+  /* A11y: Textos interiores masivos y con mayor peso */
   .card-content { padding: 20px; }
-  .zone-title { font-size: 24px; font-weight: 700; margin: 0 0 5px 0; text-transform: uppercase; color: var(--theme-color, #fff);}
-  .kids-title { font-family: 'Caveat', cursive; font-size: 24px; margin: 0 0 15px 0; letter-spacing: 1px; color: var(--theme-color, #fff);}
-  .desc { font-size: 16px; line-height: 1.4; color: #ccc; margin-bottom: 20px;}
+  .zone-title { font-size: 28px; font-weight: 700; margin: 0 0 5px 0; text-transform: uppercase; color: var(--theme-color, #fff);}
+  .kids-title { font-family: 'Caveat', cursive; font-size: 28px; margin: 0 0 15px 0; letter-spacing: 1px; color: var(--theme-color, #fff);}
+  .desc { font-size: 18px; line-height: 1.4; color: #f5f5f5; font-weight: 500; margin-bottom: 20px;}
   
-  .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 
+  /* A11y: Botones más altos y legibles */
   .action-btn {
-    text-align: center; padding: 12px 5px; border-radius: 12px;
-    text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 12px;
-    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;
+    text-align: center; padding: 14px 5px; border-radius: 12px;
+    text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 14px;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
     transition: transform 0.1s;
   }
   .action-btn:active { transform: scale(0.95); }
   
   .btn-neon { background: var(--theme-color); color: #000; }
-  .btn-dark { background: #333; color: #fff; border: 1px solid #555;}
+  .btn-dark { background: #222; color: #fff; border: 1px solid #666;}
   
+  /* A11y: Panel de detalles gigante */
   .details-panel {
-    display: none; margin-top: 15px; padding: 15px; background: #000; border-radius: 12px; 
-    border-left: 3px solid var(--theme-color, #fff); font-size: 13px; color: #aaa; line-height: 1.5;
+    display: none; margin-top: 15px; padding: 18px; background: #0a0a0a; border-radius: 12px; 
+    border-left: 4px solid var(--theme-color, #fff); font-size: 16px; color: #ddd; line-height: 1.6;
   }
   .details-panel a { color: var(--theme-color); text-decoration: underline; font-weight: bold; }
-  .details-panel strong { color: #fff; }
+  .details-panel strong { color: #fff; font-size: 17px;}
   .details-panel.active { display: block; animation: fadeIn 0.3s ease; }
 
   @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
   .toast {
     position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-    background: #00ffcc; color: #000; padding: 10px 20px; border-radius: 30px; 
-    font-weight: bold; font-size: 14px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 4000;
+    background: #00ffcc; color: #000; padding: 12px 24px; border-radius: 30px; 
+    font-weight: bold; font-size: 16px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 4000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
   }
 
   .timeline-bar { 
     position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 375px; background: rgba(13,13,13,0.95); backdrop-filter: blur(10px); 
+    width: 100%; max-width: 375px; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); 
     padding: 15px 0; border-top: 1px solid #333; display: flex; justify-content: center; gap: 5px; z-index: 1000;
     will-change: transform;
   }
@@ -194,56 +199,56 @@
       img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80", 
       desc: "Llegamos, recuperamos energía en la capital y el día 2 celebramos el cumple de Luciana con una Pizza Party épica.", 
       color: "#ffdd00", ytLink: "https://www.youtube.com/results?search_query=san+jose+costa+rica+ninos", 
-      details: "Fechas: 1 al 4 de Septiembre.<br>Hospedaje: <a href='https://share.google/gHsT7TQgkYwEvenZY' target='_blank'>Hotel Casa Las Orquídeas</a>.<br>Logística: Recogida de coche 4x4. Aclimatación y compras básicas." 
+      details: "<strong>Fechas:</strong> 1 al 4 de Septiembre.<br><strong>Hospedaje:</strong> <a href='https://share.google/gHsT7TQgkYwEvenZY' target='_blank'>Hotel Casa Las Orquídeas</a>.<br><strong>Logística:</strong> Recogida de coche 4x4. Aclimatación y compras básicas." 
     },
     { 
       id: "caribe", limitDay: 7, zone: "Caribe Sur", kidsTitle: "¡La Base Pirata!", 
       img: "https://commons.wikimedia.org/wiki/Special:FilePath/Playa_de_Punta_Uva%2C_Costa_Rica.jpg?width=800", 
       desc: "Arena volcánica, playas salvajes para explorar y selva tropical. ¡Días enteros para buscar perezosos en los árboles!", 
       color: "#00ffcc", ytLink: "https://www.youtube.com/results?search_query=puerto+viejo+costa+rica+animales+ninos", 
-      details: "Fechas: 4 al 8 de Septiembre.<br>Solapamiento 1: Cabinas Playa Negra.<br>Solapamiento 2: Cahuita. Cambio de base sin prisas." 
+      details: "<strong>Fechas:</strong> 4 al 8 de Septiembre.<br><strong>Solapamiento 1:</strong> Cabinas Playa Negra.<br><strong>Solapamiento 2:</strong> Cahuita. Cambio de base sin prisas." 
     },
     { 
       id: "tortuguero", limitDay: 9, zone: "Tortuguero", kidsTitle: "Exploradores del Manglar", 
       img: "https://commons.wikimedia.org/wiki/Special:FilePath/Tortuguero%2C_Costa_Rica.jpg?width=800", 
       desc: "Nos adentraremos en lancha por los laberintos de canales y manglares para descubrir monos, tucanes y caimanes salvajes.", 
       color: "#00ff55", ytLink: "https://www.youtube.com/results?search_query=tortuguero+canales+animales+costa+rica", 
-      details: "Fechas: 8 y 9 de Septiembre.<br>Logística: Coche en parking de La Pavona. Lancha pública hacia el pueblo.<br>Hospedaje: AirBnB." 
+      details: "<strong>Fechas:</strong> 8 y 9 de Septiembre.<br><strong>Logística:</strong> Coche en parking de La Pavona. Lancha pública hacia el pueblo.<br><strong>Hospedaje:</strong> AirBnB." 
     },
     { 
       id: "fortuna", limitDay: 11, zone: "La Fortuna", kidsTitle: "Volcanes y Toboganes", 
       img: "https://commons.wikimedia.org/wiki/Special:FilePath/Arenal_Volcano_seen_from_La_Fortuna%2C_Costa_Rica.jpg?width=800", 
       desc: "Aguas termales increíbles en medio de la naturaleza, piscinas de roca y vistas al imponente Volcán Arenal.", 
       color: "#ff0055", ytLink: "https://www.youtube.com/results?search_query=los+lagos+hot+springs+costa+rica", 
-      details: "Fechas: 9 al 11 de Septiembre.<br>Logística: Chapuzón térmico y paseo a caballo.<br>Hospedaje: Los Lagos." 
+      details: "<strong>Fechas:</strong> 9 al 11 de Septiembre.<br><strong>Logística:</strong> Chapuzón térmico y paseo a caballo.<br><strong>Hospedaje:</strong> Los Lagos." 
     },
     { 
       id: "monteverde", limitDay: 12, zone: "Monteverde", kidsTitle: "Caminando en las Nubes", 
       img: "https://images.unsplash.com/photo-1550853024-fae8cd4be47f?auto=format&fit=crop&w=800&q=80", 
       desc: "Puentes colgantes gigantes entre la niebla del bosque y santuarios llenos de colibríes zumbando a tu lado.", 
       color: "#cc00ff", ytLink: "https://www.youtube.com/results?search_query=selvatura+park+monteverde+hanging+bridges", 
-      details: "Fechas: 11 y 12 de Septiembre.<br>Logística: Ruta escénica bordeando el Lago Arenal hacia la montaña.<br>Hospedaje: Cabañas Bosque Nuboso." 
+      details: "<strong>Fechas:</strong> 11 y 12 de Septiembre.<br><strong>Logística:</strong> Ruta escénica bordeando el Lago Arenal hacia la montaña.<br><strong>Hospedaje:</strong> Cabañas Bosque Nuboso." 
     },
     { 
       id: "tarcoles", limitDay: 13, zone: "Río Tárcoles", kidsTitle: "Cocodrilos Gigantes", 
       img: "https://commons.wikimedia.org/wiki/Special:FilePath/American_Crocodile_Tarcoles.jpeg?width=800", 
       desc: "Vemos cocodrilos prehistóricos gigantes desde el puente, una parada técnica alucinante.", 
       color: "#ff8800", ytLink: "https://www.youtube.com/results?search_query=tarcoles+river+crocodiles+bridge", 
-      details: "Fechas: 12 de Septiembre.<br>Logística: Descenso de montaña, parada táctica en el puente del Río Tárcoles.<br>Hospedaje: <a href='https://share.google/gHsT7TQgkYwEvenZY' target='_blank'>Hotel Casa Las Orquídeas</a>." 
+      details: "<strong>Fechas:</strong> 12 de Septiembre.<br><strong>Logística:</strong> Descenso de montaña, parada táctica en el puente del Río Tárcoles.<br><strong>Hospedaje:</strong> <a href='https://share.google/gHsT7TQgkYwEvenZY' target='_blank'>Hotel Casa Las Orquídeas</a>." 
     },
     { 
       id: "poas", limitDay: 14, zone: "Volcán Poás", kidsTitle: "El Cráter Humeante", 
       img: "https://commons.wikimedia.org/wiki/Special:FilePath/Poas_Volcano_1.jpg?width=800", 
       desc: "Nos asomamos al cráter de un volcán activo y comemos delicioso en la montaña.", 
       color: "#ff3300", ytLink: "https://www.youtube.com/results?search_query=volcan+poas+costa+rica", 
-      details: "Fechas: Domingo 13 de Septiembre.<br>Logística: Visita en familia 1 día + Almuerzo Típico." 
+      details: "<strong>Fechas:</strong> Domingo 13 de Septiembre.<br><strong>Logística:</strong> Visita en familia 1 día + Almuerzo Típico." 
     },
     { 
       id: "sanjose-fin", limitDay: 16, zone: "San José Centro", kidsTitle: "Fiestas y Despedida", 
       img: "https://commons.wikimedia.org/wiki/Special:FilePath/San_Jose_Costa_Rica_Skyline%2C_December_2023.png?width=800", 
       desc: "Cerramos el viaje con desfiles de faroles y compras de última hora.", 
       color: "#0055ff", ytLink: "https://www.youtube.com/results?search_query=fiestas+patrias+costa+rica+15+septiembre", 
-      details: "Fechas: 12 al 16 de Septiembre.<br>Logística: Visitas San José + Fiestas Patrias + Visita Pequeño Mundo." 
+      details: "<strong>Fechas:</strong> 12 al 16 de Septiembre.<br><strong>Logística:</strong> Visitas San José + Fiestas Patrias + Visita Pequeño Mundo." 
     }
   ];
 
