@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://costa-rica-app.marcobernadas.es/portada.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Rubik+Dirt&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg-dark: #000000; /* Negro puro para contraste máximo OLED */
@@ -42,10 +42,29 @@
     padding-bottom: 90px; 
   }
 
-  /* A11y: Títulos hipertrofiados */
-  header { padding: 30px 20px 10px; text-align: center; }
+  /* A11y: Títulos hipertrofiados + Sello */
+  header { padding: 30px 20px 10px; text-align: center; position: relative; }
   h1 { margin: 0; font-size: 44px; font-weight: 700; text-transform: uppercase; letter-spacing: -1px; color: #fff;}
   h2 { font-family: 'Caveat', cursive; margin: -5px 0 20px 0; font-size: 32px; color: #00ffcc; transform: rotate(-3deg);}
+
+  .stamp-family {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    font-family: 'Rubik Dirt', system-ui;
+    font-size: 24px;
+    color: #ff003c; /* Rojo chillón/neón */
+    border: 4px solid #ff003c;
+    border-radius: 8px;
+    padding: 4px 12px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    transform: rotate(33deg);
+    opacity: 0.85; /* Textura de tinta ligeramente gastada */
+    pointer-events: none; /* Para que no bloquee clics accidentales */
+    z-index: 10;
+    box-shadow: inset 0 0 3px rgba(255,0,60,0.4), 0 0 3px rgba(255,0,60,0.4);
+  }
 
   /* A11y: Botón principal más grande (Tap Target) */
   .master-map-btn {
@@ -158,8 +177,9 @@
   <header>
     <h1>Costa Rica</h1>
     <h2>La Pandilla Punkie</h2>
+    <div class="stamp-family">Family<br>Edition</div>
   </header>
-
+  
   <button data-action="open-map" class="master-map-btn">
     🗺️ Ver Mapa de la Ruta
   </button>
