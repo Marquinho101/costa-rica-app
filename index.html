@@ -49,21 +49,30 @@
 
   .stamp-family {
     position: absolute;
-    top: 120px;
-    right: 15px; /* Empujado ligeramente a la derecha */
+    top: 60px;
+    right: 15px;
     font-family: 'Rubik Dirt', system-ui;
-    font-size: 13px; /* REDUCIDO: antes 24px */
-    color: #ff003c; 
-    border: 2px solid #ff003c; /* REDUCIDO: antes 4px */
+    font-size: 18px; 
+    
+    /* --- 🎨 ZONA DE COLOR --- */
+    color: #ffffff; /* 1. Color del texto (Pon tu HEX aquí) */
+    border: 3px solid #ff003c; /* 2. Color del borde (Pon el mismo HEX aquí) */
+    /* 3. Color del resplandor: Aquí usa RGBA (Rojo, Verde, Azul, Opacidad) */
+    box-shadow: inset 0 0 3px rgba(255,0,60,0.4), 0 0 3px rgba(255,0,60,0.4);
+    /* ------------------------ */
+
     border-radius: 6px;
-    padding: 2px 8px; /* REDUCIDO: antes 4px 12px */
+    padding: 3px 10px;
     line-height: 1.1;
     text-transform: uppercase;
-    transform: rotate(33deg);
+    
+    /* --- 📐 ZONA DE INCLINACIÓN --- */
+    transform: rotate(33deg); /* Cambia el 33 por los grados que quieras */
+    /* ------------------------------ */
+
     opacity: 0.85; 
     pointer-events: none; 
     z-index: 10;
-    box-shadow: inset 0 0 3px rgba(255,0,60,0.4), 0 0 3px rgba(255,0,60,0.4);
   }
 
   /* A11y: Botón principal más grande (Tap Target) */
